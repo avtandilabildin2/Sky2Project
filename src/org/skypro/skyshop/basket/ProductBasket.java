@@ -55,6 +55,21 @@ public class ProductBasket {
 
     @Override
     public String toString() {
-        return Arrays.toString(productBasket);
+        String string="";
+        int sum=0;
+        int count=0;
+        for(Product p : productBasket) {
+            if(p!=null) {
+                string+=p+"\n";
+                sum+=p.getPrice();
+                count++;
+            }
+
+        }
+        string+="Итого: "+sum+"\n";
+        string+="Специальных товаров: "+count+"\n";
+        return string;
+
+
     }
 }
