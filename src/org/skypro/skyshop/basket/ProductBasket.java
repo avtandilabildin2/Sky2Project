@@ -34,10 +34,19 @@ public class ProductBasket {
             System.out.println("В корзине пусто");
             return;
         }
+        int count=0;
+        int sum=0;
         for(Product p : productBasket) {
-            System.out.println(p);
+            if(p!=null) {
+                sum+=p.getPrice();
+                System.out.println(p);
+                if(p.isSpecial()){
+                    count++;
+                }
+            }
         }
-        System.out.println("Итого: "+sumOfProductBasket());
+        System.out.println("Итого: "+sum);
+        System.out.println("Специальных товаров: "+count);
     }
     public boolean esExist(String productName) {
         for(Product p : productBasket) {
@@ -59,12 +68,14 @@ public class ProductBasket {
         int sum=0;
         int count=0;
         for(Product p : productBasket) {
+            string+=p+"\n";
             if(p!=null) {
-                string+=p+"\n";
                 sum+=p.getPrice();
+            }
+            sum+=p.getPrice();
+            if(p.isSpecial()){
                 count++;
             }
-
         }
         string+="Итого: "+sum+"\n";
         string+="Специальных товаров: "+count+"\n";

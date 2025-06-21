@@ -27,7 +27,8 @@ public class DiscountedProduct extends Product
     public void setDiscountedPrice(int discountedPrice) {
         this.discountedPrice = discountedPrice;
     }
+    @Override
     public String toString(){
-        return getTitle()+" "+getPrice()+" "+getDiscountedPrice();
+        return getTitle()+": "+getPrice()+"("+getDiscountedPrice()+"%)";
     }
 }

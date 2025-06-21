@@ -15,7 +15,7 @@ public class App {
         productBasket.addToProductBasket(discountedProduct);
         productBasket.addToProductBasket(simpleProduct);
         productBasket.addToProductBasket(fixPriceProduct);
-        System.out.println(productBasket);
+        productBasket.allThing();
 
     }
 
