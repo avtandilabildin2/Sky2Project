@@ -4,5 +4,7 @@ public interface Searchable{
     String searchTerm();
     String type();
     String getSearchableName();
-    String getStringRepresentation();
+    default String getStringRepresentation(){
+        return getSearchableName()+" - "+type();
+    }
 }

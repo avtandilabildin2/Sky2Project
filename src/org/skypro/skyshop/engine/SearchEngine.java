@@ -13,10 +13,12 @@ public class SearchEngine {
         searchables = new Searchable[size];
     }
 
-    public Searchable[] search() {
+    public Searchable[] search(String term) {
         Searchable[] result = new Searchable[5];
         for (int i = 0; i <5 ; i++) {
-            result[i]=searchables[i];
+            if(searchables[i].searchTerm().contains(term)) {
+                result[i] = searchables[i];
+            }
         }
         return result;
     }
