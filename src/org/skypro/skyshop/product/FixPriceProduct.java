@@ -13,7 +13,7 @@ public class FixPriceProduct extends Product {
     public int getPrice() {
         return FIX_PRICE_PROUCT;
     }
-    private String productName;
+
     public FixPriceProduct(String productName) {
         super(productName);
 
@@ -22,5 +22,25 @@ public class FixPriceProduct extends Product {
     @Override
     public String toString() {
         return getTitle()+": "+getPrice();
+    }
+
+    @Override
+    public String searchTerm() {
+        return toString();
+    }
+
+    @Override
+    public String type() {
+        return "PRODUCT";
+    }
+
+    @Override
+    public String getSearchableName() {
+        return getTitle();
+    }
+
+    @Override
+    public String getStringRepresentation() {
+        return getTitle()+" - "+getPrice()+" - "+type();
     }
 }

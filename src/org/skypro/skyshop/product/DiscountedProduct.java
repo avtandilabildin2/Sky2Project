@@ -31,4 +31,24 @@ public class DiscountedProduct extends Product
     public String toString(){
         return getTitle()+": "+getPrice()+"("+getDiscountedPrice()+"%)";
     }
+
+    @Override
+    public String searchTerm() {
+        return toString();
+    }
+
+    @Override
+    public String type() {
+        return "PRODUCT";
+    }
+
+    @Override
+    public String getSearchableName() {
+        return getTitle();
+    }
+
+    @Override
+    public String getStringRepresentation() {
+        return getTitle()+": "+getPrice()+"("+getDiscountedPrice()+")"+type();
+    }
 }
