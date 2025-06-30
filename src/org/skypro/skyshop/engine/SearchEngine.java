@@ -1,4 +1,6 @@
-package org.skypro.skyshop.product;
+package org.skypro.skyshop.engine;
+
+import org.skypro.skyshop.product.Searchable;
 
 import java.util.Arrays;
 
