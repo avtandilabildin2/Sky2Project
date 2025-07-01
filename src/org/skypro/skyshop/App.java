@@ -27,7 +27,12 @@ public class App {
         searchEngine.addSearchable(article1);
         searchEngine.addSearchable(article2);
         searchEngine.addSearchable(article3);
-        System.out.println(Arrays.toString(searchEngine.search()));
+        System.out.println(Arrays.toString(searchEngine.search("article1")));
+        System.out.println(Arrays.toString(searchEngine.search("article2")));
+        System.out.println(Arrays.toString(searchEngine.search("article3")));
+        searchEngine.search("discoun");
+        searchEngine.search("simpl");
+        searchEngine.search("fix");
 
 
     }
