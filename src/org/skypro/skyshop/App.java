@@ -3,36 +3,50 @@ package org.skypro.skyshop;
 import org.skypro.skyshop.article.Article;
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.engine.SearchEngine;
+import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.product.*;
 
 import java.util.Arrays;
 
 public class App {
-    public static void main(String[] args) {
-        DiscountedProduct discountedProduct=new DiscountedProduct("discounted product",1000,12);
-        SimpleProduct simpleProduct=new SimpleProduct("simple product",1000);
-        FixPriceProduct fixPriceProduct=new FixPriceProduct("fix price product");
-        ProductBasket productBasket=new ProductBasket();
-        productBasket.addToProductBasket(discountedProduct);
-        productBasket.addToProductBasket(simpleProduct);
-        productBasket.addToProductBasket(fixPriceProduct);
-        productBasket.allThing();
-        SearchEngine searchEngine=new SearchEngine(10);
-        searchEngine.addSearchable(discountedProduct);
-        searchEngine.addSearchable(simpleProduct);
-        searchEngine.addSearchable(fixPriceProduct);
-        Article article1=new Article("article1","text1");
-        Article article2=new Article("article2","text2");
-        Article article3=new Article("article3","text3");
-        searchEngine.addSearchable(article1);
-        searchEngine.addSearchable(article2);
-        searchEngine.addSearchable(article3);
-        System.out.println(Arrays.toString(searchEngine.search("article1")));
-        System.out.println(Arrays.toString(searchEngine.search("article2")));
-        System.out.println(Arrays.toString(searchEngine.search("article3")));
-        searchEngine.search("discoun");
-        searchEngine.search("simpl");
-        searchEngine.search("fix");
+    public static void main(String[] args) throws BestResultNotFound {
+        try {
+            SimpleProduct product=new SimpleProduct(null,1000);
+
+
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        try{
+            SimpleProduct product=new SimpleProduct("product",-1000);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        try{
+            DiscountedProduct discountedProduct=new DiscountedProduct("",12,12);
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        try{
+            DiscountedProduct discountedProduct=new DiscountedProduct("l",-12,12);
+
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        try{
+            DiscountedProduct discountedProduct=new DiscountedProduct("l",12,-12);
+
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+        SearchEngine searchEngine=new SearchEngine(12);
+        searchEngine.addSearchable(new SimpleProduct("Abildin",1000));
+        System.out.println(searchEngine.searchable("Abil"));
+        try{
+            System.out.println(searchEngine.searchable("hello"));
+        }catch (BestResultNotFound e) {
+            System.out.println(e.getMessage());
+        }
 
 
     }

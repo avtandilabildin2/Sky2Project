@@ -4,6 +4,9 @@ public class SimpleProduct extends Product {
     public SimpleProduct(String title, int price) {
         super(title);
         this.price = price;
+        if(price<1){
+            throw new IllegalArgumentException("Недостаточно денег!!!");
+        }
     }
     private int price;
     @Override
