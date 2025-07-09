@@ -10,44 +10,34 @@ import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) throws BestResultNotFound {
-        try {
-            SimpleProduct product=new SimpleProduct(null,1000);
+        SimpleProduct simpleProduct1=new SimpleProduct("title1",12);
+        SimpleProduct simpleProduct2=new SimpleProduct("title2",12);
+        SimpleProduct simpleProduct3=new SimpleProduct("title3",12);
+        SimpleProduct simpleProduct4=new SimpleProduct("title4",12);
+        SimpleProduct simpleProduct5=new SimpleProduct("title5",12);
+        ProductBasket basket=new ProductBasket();
+        basket.addToProductBasket(simpleProduct1);
+        basket.addToProductBasket(simpleProduct2);
+        basket.addToProductBasket(simpleProduct3);
+        basket.addToProductBasket(simpleProduct4);
+        basket.addToProductBasket(simpleProduct5);
+        basket.deleteByName("title1");
+        basket.deleteByName("title2");
+        basket.deleteByName("title3");
 
-
-        }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        try{
-            SimpleProduct product=new SimpleProduct("product",-1000);
-        }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        try{
-            DiscountedProduct discountedProduct=new DiscountedProduct("",12,12);
-        }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        try{
-            DiscountedProduct discountedProduct=new DiscountedProduct("l",-12,12);
-
-        }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        try{
-            DiscountedProduct discountedProduct=new DiscountedProduct("l",12,-12);
-
-        }catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        SearchEngine searchEngine=new SearchEngine(12);
-        searchEngine.addSearchable(new SimpleProduct("Abildin",1000));
-        System.out.println(searchEngine.searchable("Abil"));
-        try{
-            System.out.println(searchEngine.searchable("hello"));
-        }catch (BestResultNotFound e) {
-            System.out.println(e.getMessage());
-        }
-
+        basket.printDeletedProduct();
+        basket.printBasket();
+        basket.deleteByName(null);
+        ProductBasket basket2=new ProductBasket();
+        basket2.printDeletedProduct();
+        SearchEngine searchEngine=new SearchEngine();
+        searchEngine.addSearchable(new SimpleProduct("title1",12));
+        searchEngine.addSearchable(new SimpleProduct("title2",12));
+        searchEngine.addSearchable(new SimpleProduct("title3",12));
+        System.out.println(searchEngine.searchable("title2"));
+        SimpleProduct simpleProduct=new SimpleProduct("title4",12);
+        System.out.println(simpleProduct.searchTerm());
+        System.out.println(searchEngine.search("tit"));
 
     }
 

@@ -4,14 +4,17 @@ import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.product.Searchable;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 public class SearchEngine {
-    private int size;
+
     private int count;
-    private Searchable[] searchables;
-    public SearchEngine(int size) {
-        this.size = size;
-        searchables = new Searchable[size];
+    private List<Searchable> searchables;
+    public SearchEngine() {
+
+        searchables = new LinkedList<>();
     }
     public Searchable searchable(String search) throws BestResultNotFound {
         Searchable searchable = null;
@@ -39,28 +42,35 @@ public class SearchEngine {
         }
         return searchable;
     }
-    public Searchable[] search(String term) {
-        Searchable[] result = new Searchable[5];
-        for (int i = 0; i <5 ; i++) {
-            if(searchables[i].searchTerm().contains(term)) {
-                result[i] = searchables[i];
+    public List<Searchable> search(String term) {
+        Iterator<Searchable> iterator = searchables.iterator();
+        List<Searchable> result = new LinkedList<>();
+        int count = 0;
+        while (iterator.hasNext()) {
+            Searchable s = iterator.next();
+            if (s.searchTerm().contains(term)) {
+                result.add(s);
+                count++;
+                if (count == 5) {
+                    break;
+                }
             }
         }
+
         return result;
+
     }
     public void addSearchable(Searchable searchable) {
-        if(count<size) {
-            searchables[count] = searchable;
-            count++;
-        }
-        else{
-            System.out.println("Заполнен!!!");
-        }
+        searchables.add(searchable);
 
     }
 
     @Override
     public String toString() {
-        return Arrays.toString(searchables);
+        String results = "";
+        for (Searchable s : searchables) {
+            results = results + s + "\n";
+        }
+        return results;
     }
 }
