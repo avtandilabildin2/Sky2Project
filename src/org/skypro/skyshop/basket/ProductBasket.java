@@ -6,11 +6,11 @@ import org.skypro.skyshop.product.Searchable;
 import java.util.*;
 
 public class ProductBasket {
-    List<Product> deletedProduct;
+
     private List<Product> productBasket;
     public ProductBasket() {
         productBasket = new LinkedList<>();
-        deletedProduct = new LinkedList<>();
+
     }
     public void addToProductBasket(Product product) {
         productBasket.add(product);
@@ -30,18 +30,18 @@ public class ProductBasket {
 
     }
     public List<Product> deleteByName(String name) {
-        for (Product product : deletedProduct) {
+        for (Product product : deleteByName("")) {
             product=null;
         }
         Iterator<Product> iterator = productBasket.iterator();
         while (iterator.hasNext()) {
             Product product = iterator.next();
             if (product.getTitle().equals(name)) {
-                deletedProduct.add(product);
+                deleteByName("").add(product);
                 iterator.remove();
             }
         }
-        return deletedProduct;
+        return deleteByName("");
     }
 
     public void printBasket() {
