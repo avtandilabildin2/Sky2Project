@@ -6,6 +6,9 @@ public class DiscountedProduct extends Product
         super(title);
         this.price = price;
         this.discountedPrice = discountedPrice;
+        if (price<1||discountedPrice>100||discountedPrice<0){
+            throw new IllegalArgumentException("Неправильное число цены или процента!!!");
+        }
     }
     private int price;
     private int discountedPrice;
@@ -30,5 +33,25 @@ public class DiscountedProduct extends Product
     @Override
     public String toString(){
         return getTitle()+": "+getPrice()+"("+getDiscountedPrice()+"%)";
+    }
+
+    @Override
+    public String searchTerm() {
+        return toString();
+    }
+
+    @Override
+    public String type() {
+        return "PRODUCT";
+    }
+
+    @Override
+    public String getSearchableName() {
+        return getTitle();
+    }
+
+    @Override
+    public String getStringRepresentation() {
+        return getTitle()+": "+getPrice()+"("+getDiscountedPrice()+")"+type();
     }
 }

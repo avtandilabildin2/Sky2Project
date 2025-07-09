@@ -4,6 +4,9 @@ public class SimpleProduct extends Product {
     public SimpleProduct(String title, int price) {
         super(title);
         this.price = price;
+        if(price<1){
+            throw new IllegalArgumentException("Недостаточно денег!!!");
+        }
     }
     private int price;
     @Override
@@ -18,5 +21,25 @@ public class SimpleProduct extends Product {
     @Override
     public String toString() {
         return getTitle() + ": " + getPrice();
+    }
+
+    @Override
+    public String searchTerm() {
+        return toString();
+    }
+
+    @Override
+    public String type() {
+        return "PRODUCT";
+    }
+
+    @Override
+    public String getSearchableName() {
+        return getTitle();
+    }
+
+    @Override
+    public String getStringRepresentation() {
+        return getTitle()+" - "+getPrice()+" - "+type();
     }
 }
