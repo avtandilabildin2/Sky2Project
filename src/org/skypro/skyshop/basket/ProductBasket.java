@@ -30,18 +30,16 @@ public class ProductBasket {
 
     }
     public List<Product> deleteByName(String name) {
-        for (Product product : deleteByName("")) {
-            product=null;
-        }
+        List<Product> deletedProducts = new LinkedList<>();
         Iterator<Product> iterator = productBasket.iterator();
         while (iterator.hasNext()) {
             Product product = iterator.next();
             if (product.getTitle().equals(name)) {
-                deleteByName("").add(product);
+                deletedProducts.add(product);
                 iterator.remove();
             }
         }
-        return deleteByName("");
+        return deletedProducts;
     }
 
     public void printBasket() {
