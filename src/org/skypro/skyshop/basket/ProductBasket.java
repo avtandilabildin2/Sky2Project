@@ -1,6 +1,7 @@
 package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.Searchable;
 
 import java.util.*;
 
@@ -16,18 +17,19 @@ public class ProductBasket {
 
     }
     public void printDeletedProduct() {
-        if (deletedProduct.size() ==0) {
+
+        Iterator<Product> iterator = deleteByName("").iterator();
+        if(iterator==null) {
             System.out.println("Корзина пуста!!!");
-            return ;
+            return;
         }
-        Iterator<Product> iterator = deletedProduct.iterator();
         while (iterator.hasNext()) {
             Product product = iterator.next();
             System.out.println(product);
         }
 
     }
-    public void deleteByName(String name) {
+    public List<Product> deleteByName(String name) {
         for (Product product : deletedProduct) {
             product=null;
         }
@@ -39,7 +41,9 @@ public class ProductBasket {
                 iterator.remove();
             }
         }
+        return deletedProduct;
     }
+
     public void printBasket() {
         Iterator<Product> iterator = productBasket.iterator();
         while (iterator.hasNext()) {
