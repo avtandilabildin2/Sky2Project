@@ -16,19 +16,7 @@ public class ProductBasket {
         productBasket.add(product);
 
     }
-    public void printDeletedProduct() {
 
-        Iterator<Product> iterator = deleteByName("").iterator();
-        if(iterator==null) {
-            System.out.println("Корзина пуста!!!");
-            return;
-        }
-        while (iterator.hasNext()) {
-            Product product = iterator.next();
-            System.out.println(product);
-        }
-
-    }
     public List<Product> deleteByName(String name) {
         List<Product> deletedProducts = new LinkedList<>();
         Iterator<Product> iterator = productBasket.iterator();
@@ -38,7 +26,12 @@ public class ProductBasket {
                 deletedProducts.add(product);
                 iterator.remove();
             }
+
+
         }
+
+
+
         return deletedProducts;
     }
 
