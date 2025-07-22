@@ -1,45 +1,40 @@
 package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.Searchable;
 
 import java.util.*;
 
 public class ProductBasket {
-    List<Product> deletedProduct;
+
     private List<Product> productBasket;
     public ProductBasket() {
         productBasket = new LinkedList<>();
-        deletedProduct = new LinkedList<>();
+
     }
     public void addToProductBasket(Product product) {
         productBasket.add(product);
 
     }
-    public void printDeletedProduct() {
-        if (deletedProduct.size() ==0) {
-            System.out.println("Корзина пуста!!!");
-            return ;
-        }
-        Iterator<Product> iterator = deletedProduct.iterator();
-        while (iterator.hasNext()) {
-            Product product = iterator.next();
-            System.out.println(product);
-        }
 
-    }
-    public void deleteByName(String name) {
-        for (Product product : deletedProduct) {
-            product=null;
-        }
+    public List<Product> deleteByName(String name) {
+        List<Product> deletedProducts = new LinkedList<>();
         Iterator<Product> iterator = productBasket.iterator();
         while (iterator.hasNext()) {
             Product product = iterator.next();
             if (product.getTitle().equals(name)) {
-                deletedProduct.add(product);
+                deletedProducts.add(product);
                 iterator.remove();
             }
+
+
         }
+
+
+
+        return deletedProducts;
     }
+
     public void printBasket() {
         Iterator<Product> iterator = productBasket.iterator();
         while (iterator.hasNext()) {

@@ -7,6 +7,7 @@ import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.product.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) throws BestResultNotFound {
@@ -25,11 +26,11 @@ public class App {
         basket.deleteByName("title2");
         basket.deleteByName("title3");
 
-        basket.printDeletedProduct();
+
         basket.printBasket();
         basket.deleteByName(null);
         ProductBasket basket2=new ProductBasket();
-        basket2.printDeletedProduct();
+
         SearchEngine searchEngine=new SearchEngine();
         searchEngine.addSearchable(new SimpleProduct("title1",12));
         searchEngine.addSearchable(new SimpleProduct("title2",12));
@@ -38,7 +39,18 @@ public class App {
         SimpleProduct simpleProduct=new SimpleProduct("title4",12);
         System.out.println(simpleProduct.searchTerm());
         System.out.println(searchEngine.search("tit"));
+        List<Product> deletedProducts=basket.deleteByName("title1");
+        if(deletedProducts.isEmpty()){
+            System.out.println("Корзина пуста!!!");
+        }
+        else{
+            for(Product p:deletedProducts){
+                System.out.println(p);
+            }
+        }
+
 
     }
+
 
 }
