@@ -8,6 +8,7 @@ import org.skypro.skyshop.product.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class App {
     public static void main(String[] args) throws BestResultNotFound {
@@ -44,8 +45,9 @@ public class App {
             System.out.println("Корзина пуста!!!");
         }
         else{
-            for(Product p:deletedProducts){
-                System.out.println(p);
+            for (Map.Entry<String,Product> entry : deletedProducts.entrySet()) {
+                Product product=entry.getValue();
+                System.out.println(product);
             }
         }
 

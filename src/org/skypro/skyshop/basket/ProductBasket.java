@@ -1,72 +1,57 @@
 package org.skypro.skyshop.basket;
 
 import org.skypro.skyshop.product.Product;
-import org.skypro.skyshop.product.Searchable;
 
 import java.util.*;
 
 public class ProductBasket {
 
-    private List<Product> productBasket;
+    private Map<String,Product> productBasket;
     public ProductBasket() {
-        productBasket = new LinkedList<>();
+        productBasket = new TreeMap<>();
 
     }
     public void addToProductBasket(Product product) {
-        productBasket.add(product);
+        productBasket.put(product.getTitle(), product);
 
     }
 
     public List<Product> deleteByName(String name) {
-        List<Product> deletedProducts = new LinkedList<>();
-        Iterator<Product> iterator = productBasket.iterator();
-        while (iterator.hasNext()) {
-            Product product = iterator.next();
-            if (product.getTitle().equals(name)) {
-                deletedProducts.add(product);
-                iterator.remove();
-            }
+
+        List<Product> result = new LinkedList<>();
+        if(productBasket.containsKey(name)) {
+            result.add(productBasket.remove(name));
+
+        }else System.out.println("Продукт с таким именем не существует!!!");
 
 
-        }
-
-
-
-        return deletedProducts;
+        return result;
     }
 
     public void printBasket() {
-        Iterator<Product> iterator = productBasket.iterator();
-        while (iterator.hasNext()) {
-            Product product = iterator.next();
-            System.out.println(product);
+        for (Map.Entry<String,Product> entry : productBasket.entrySet()) {
+            System.out.println(entry.getValue().toString());
         }
     }
     public int sumOfProductBasket() {
-        int sum=0;
-        for(Product p : productBasket) {
-            sum+=p.getPrice();
+        int sum = 0;
+        for (Map.Entry<String,Product> entry : productBasket.entrySet()) {
+            sum += entry.getValue().getPrice();
         }
         return sum;
     }
     public void allThing() {
-        boolean exist=false;
-        for(Product p : productBasket) {
-            if(p!=null) {
-                exist=true;
-            }
-        }
-        if(!exist) {
+        if(productBasket.isEmpty()) {
             System.out.println("В корзине пусто");
             return;
         }
         int count=0;
         int sum=0;
-        for(Product p : productBasket) {
-            if(p!=null) {
-                sum+=p.getPrice();
-                System.out.println(p);
-                if(p.isSpecial()){
+        for (Map.Entry<String,Product> entry : productBasket.entrySet()) {
+            if(entry.getValue()!=null) {
+                sum+=entry.getValue().getPrice();
+                System.out.println(entry.getValue());
+                if(entry.getValue().isSpecial()){
                     count++;
                 }
             }
@@ -75,17 +60,10 @@ public class ProductBasket {
         System.out.println("Специальных товаров: "+count);
     }
     public boolean esExist(String productName) {
-        for(Product p : productBasket) {
-            if(productName.equals(p.getTitle())){
-                return true;
-            }
-        }
-        return false;
+        return productBasket.containsKey(productName);
     }
     public void clearProductBasket() {
-        for(Product p : productBasket) {
-            p=null;
-        }
+        productBasket.clear();
     }
 
     @Override
@@ -93,13 +71,12 @@ public class ProductBasket {
         String string="";
         int sum=0;
         int count=0;
-        for(Product p : productBasket) {
-            string+=p+"\n";
-            if(p!=null) {
-                sum+=p.getPrice();
+        for (Map.Entry<String,Product> entry : productBasket.entrySet()) {
+            string+=entry.getValue()+"\n";
+            if (entry.getValue()!=null) {
+                sum+=entry.getValue().getPrice();
             }
-            sum+=p.getPrice();
-            if(p.isSpecial()){
+            if (entry.getValue().isSpecial()) {
                 count++;
             }
         }
