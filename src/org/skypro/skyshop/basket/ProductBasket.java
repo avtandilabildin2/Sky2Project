@@ -8,7 +8,7 @@ public class ProductBasket {
 
     private Map<String,Product> productBasket;
     public ProductBasket() {
-        productBasket = new TreeMap<>();
+        productBasket = new HashMap<>();
 
     }
     public void addToProductBasket(Product product) {
@@ -19,11 +19,12 @@ public class ProductBasket {
     public List<Product> deleteByName(String name) {
 
         List<Product> result = new LinkedList<>();
-        if(productBasket.containsKey(name)) {
+        if (productBasket.containsKey(name)) {
             result.add(productBasket.remove(name));
 
-        }else System.out.println("Продукт с таким именем не существует!!!");
-
+        } else{
+            System.out.println("Продукт с таким именем не существует!!!");
+        }
 
         return result;
     }
