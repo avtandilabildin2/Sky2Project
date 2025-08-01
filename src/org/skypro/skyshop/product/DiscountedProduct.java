@@ -54,4 +54,6 @@ public class DiscountedProduct extends Product
     public String getStringRepresentation() {
         return getTitle()+": "+getPrice()+"("+getDiscountedPrice()+")"+type();
     }
+
+
 }

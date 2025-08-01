@@ -1,8 +1,11 @@
 package org.skypro.skyshop.article;
 
+import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.Searchable;
 
-public final class Article implements Searchable {
+import java.util.Objects;
+
+public final class Article implements Searchable{
     private String title;
     private String text;
 
@@ -11,7 +14,17 @@ public final class Article implements Searchable {
         this.text = text;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Article article)) return false;
 
+        return Objects.equals(title, article.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(title);
+    }
 
     public String getTitle() {
         return title;
@@ -45,4 +58,7 @@ public final class Article implements Searchable {
     public String toString() {
         return title+" - "+text+" - "+type();
     }
+
+
+
 }

@@ -1,20 +1,24 @@
 package org.skypro.skyshop.engine;
 
+import org.skypro.skyshop.comparators.Comparator1;
 import org.skypro.skyshop.exception.BestResultNotFound;
 import org.skypro.skyshop.product.Searchable;
 
 import java.util.*;
 
-public class SearchEngine {
-    private Map<String,Searchable> searchables;
+public class SearchEngine  {
+
+
+    private Set<Searchable> searchables;
     public SearchEngine() {
 
-        searchables = new TreeMap<>();
+        searchables = new TreeSet<>(new Comparator1());
     }
+
     public Searchable searchable(String search) throws BestResultNotFound {
         Searchable searchable = null;
         int maxCount = 0;
-        for (Searchable s : searchables.values()) {
+        for (Searchable s : searchables) {
             int count=0;
             int index=0;
             if (s==null) {
@@ -37,7 +41,7 @@ public class SearchEngine {
         return searchable;
     }
     public Map<String,Searchable> search(String term) {
-        Iterator<Searchable> iterator = searchables.values().iterator();
+        Iterator<Searchable> iterator = searchables.iterator();
         Map<String,Searchable> result = new TreeMap<>();
         int count=0;
         while (iterator.hasNext()) {
@@ -54,16 +58,19 @@ public class SearchEngine {
 
     }
     public void addSearchable(Searchable searchable) {
-        searchables.put(searchable.getSearchableName(), searchable);
+        searchables.add( searchable);
 
     }
 
     @Override
     public String toString() {
         String results = "";
-        for (Searchable s : searchables.values()) {
+        for (Searchable s : searchables) {
             results = results + s + "\n";
         }
         return results;
     }
+
+
+
 }
