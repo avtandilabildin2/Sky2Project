@@ -7,12 +7,10 @@ import org.skypro.skyshop.product.Searchable;
 import java.util.*;
 
 public class SearchEngine  {
-
-
     private Set<Searchable> searchables;
     public SearchEngine() {
 
-        searchables = new TreeSet<>(new Comparator1());
+        searchables = new HashSet<>((Collection) new Comparator1());
     }
 
     public Searchable searchable(String search) throws BestResultNotFound {
