@@ -7,6 +7,8 @@ import org.skypro.skyshop.product.Searchable;
 import java.util.*;
 
 public class SearchEngine  {
+
+
     private Set<Searchable> searchables;
     public SearchEngine() {
 
