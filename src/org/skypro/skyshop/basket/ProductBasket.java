@@ -62,6 +62,7 @@ public class ProductBasket {
         System.out.println("Итого: "+sum);
         System.out.println("Специальных товаров: "+count);
     }
+
     public boolean esExist(String productName) {
         return productBasket.containsKey(productName);
     }
