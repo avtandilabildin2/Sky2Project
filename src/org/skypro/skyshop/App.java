@@ -38,7 +38,6 @@ public class App {
         System.out.println(searchEngine.searchable("title2"));
         SimpleProduct simpleProduct=new SimpleProduct("title4",12);
         System.out.println(simpleProduct.searchTerm());
-        System.out.println(searchEngine.search("tit"));
         Set<Product> deletedProducts=basket.deleteByName("title1");
         if(deletedProducts.isEmpty()){
             System.out.println("Корзина пуста!!!");
