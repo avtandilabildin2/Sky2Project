@@ -43,4 +43,5 @@ public class FixPriceProduct extends Product {
     public String getStringRepresentation() {
         return getTitle()+" - "+getPrice()+" - "+type();
     }
+
 }
