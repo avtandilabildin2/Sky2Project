@@ -42,4 +42,6 @@ public class SimpleProduct extends Product {
     public String getStringRepresentation() {
         return getTitle()+" - "+getPrice()+" - "+type();
     }
+
+
 }

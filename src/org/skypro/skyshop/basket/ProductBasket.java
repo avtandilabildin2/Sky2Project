@@ -16,9 +16,9 @@ public class ProductBasket {
 
     }
 
-    public List<Product> deleteByName(String name) {
+    public Set<Product> deleteByName(String name) {
 
-        List<Product> result = new LinkedList<>();
+        Set<Product> result = new HashSet<>();
         if (productBasket.containsKey(name)) {
             result.add(productBasket.remove(name));
 
